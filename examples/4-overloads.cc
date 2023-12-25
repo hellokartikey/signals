@@ -4,18 +4,18 @@
 #include <hk/signals/signals.h>
 
 
-auto overloaded(int i) {
+auto overloaded(int i) -> void {
   std::cout << std::format("This is overloaded(int): {}\n", i);
 }
 
-auto overloaded(float i) {
+auto overloaded(float i) -> void {
   std::cout << std::format("This is overloaded(float): {}\n", i);
 }
 
 auto main() -> int {
-  auto signal = hk::Signal<int>{};
-
-  signal.connect(overloaded);
+  auto signal = hk::signals::Signal<int>{};
+    
+  hk::signals::connect(signal, [] (int i) { overloaded(i); });
 
   signal(9);
   

@@ -9,9 +9,10 @@ auto slot_func(int i, std::string_view msg) {
 }
 
 auto main() -> int {
-  auto signal = hk::Signal<int, std::string_view>{};
+  auto signal = hk::signals::Signal<int, std::string_view>{};
 
-  signal.connect(slot_func);
+  // signal.connect(slot_func);
+  hk::signals::connect(signal, &slot_func);
 
   signal(9, "This is a message");
   

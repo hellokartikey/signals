@@ -9,12 +9,13 @@ auto slot_fun(int i) {
 }
 
 auto main() -> int {
-  auto signal = hk::Signal<int>{};
+  auto signal = hk::signals::Signal<int>{};
 
-  signal.connect(
+  hk::signals::connect(
+    signal,
     [] (int value) { std::cout << std::format("Lambda: {}\n", value); });
 
-  signal.connect(slot_fun);
+  hk::signals::connect(signal, slot_fun);
 
   signal.emit(9);
 

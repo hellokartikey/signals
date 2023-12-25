@@ -6,7 +6,7 @@
 
 class Input {
 public:
-  hk::Signal<int> signal;
+  hk::signals::Signal<int> signal;
 
 private:
   int _value = 0;
@@ -37,11 +37,12 @@ public:
 
 auto main() -> int {
   auto i = Input{};
+
   auto l1 = Label{"This is label 1"};
   auto l2 = Label{"This is label 2"};
 
-  i.signal.connect( &Label::display, l1 );
-  i.signal.connect( &Label::display, l2 );
+  i.signal.connect([&] (int i) { l1.display(i); });
+  hk::signals::connect(i.signal, [&] (int i) { l2.display(i); });
 
   i.value(9);
 
