@@ -1,20 +1,16 @@
 add_library(
-  ${HK_LIB}
+  ${PROJECT_NAME}
   INTERFACE)
 
 target_include_directories(
-  ${HK_LIB}
+  ${PROJECT_NAME}
   INTERFACE
   $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-set_target_properties(
-  ${HK_LIB} PROPERTIES
-  VERSION ${PROJECT_NAME}
-  SOVERSION ${PROJECT_VERSION})
-
+include(GNUInstallDirs)
 install(
-  TARGETS ${HK_LIB}
+  TARGETS ${PROJECT_NAME}
   EXPORT ${PROJECT_NAME}_Targets
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -22,19 +18,14 @@ install(
 
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
-  "${PROJECT_NAME}ConfigVersion.cmake"
+  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
   VERSION ${PROJECT_VERSION}
   COMPATIBILITY SameMajorVersion)
-
-if(NOT INCLUDE_INSTALL_DIR)
-  set(INCLUDE_INSTALL_DIR include/)
-endif()
 
 configure_package_config_file(
   "${PROJECT_SOURCE_DIR}/${PROJECT_NAME}Config.cmake.in"
   "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-  INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake
-  PATH_VARS INCLUDE_INSTALL_DIR)
+  INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
 
 install(
   EXPORT ${PROJECT_NAME}_Targets
@@ -45,9 +36,13 @@ install(
 install(
   FILES
   "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-  # "${PROJECT_BINARY_DIR}/${PROJECT_NAME}/cmake"
+  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
   DESTINATION
   "${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake")
+
+include(CMakePrintHelpers)
+cmake_print_variables(EXECUTABLE_OUTPUT_PATH)
+cmake_print_variables(PROJECT_BINARY_DIR)
 
 install(
   DIRECTORY ${PROJECT_SOURCE_DIR}/include/
