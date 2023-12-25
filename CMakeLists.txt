@@ -7,6 +7,8 @@ project(
   HOMEPAGE_URL "https://github.com/hellokartikey/signals"
   LANGUAGES CXX)
 
+option(BUILD_EXAMPLES "Build examples" OFF)
+
 set(HK_LIB signals)
 set(HK_NAMESPACE hk)
 
@@ -14,4 +16,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(include)
-add_subdirectory(examples)
+
+if(BUILD_EXAMPLES)
+  add_subdirectory(examples)
+endif(BUILD_EXAMPLES)
