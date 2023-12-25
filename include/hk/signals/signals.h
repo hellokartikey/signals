@@ -11,15 +11,14 @@ private:
 
   using slot_idx = std::size_t;
 
-  // std::map<slot_idx, slot_func> slots;
-  std::vector<slot_func> slots;
+  std::map<slot_idx, slot_func> slots;
   slot_idx curr_idx = 0;
 
 private:
   auto connect_obj(const slot_func& slot_obj) -> slot_idx {
-    auto connection_id = connections();
-    slots.push_back(slot_obj);
-    return connection_id;
+    auto curr = curr_idx;
+    slots[curr_idx++] = slot_obj;
+    return curr;
   }
 
 public:
@@ -35,7 +34,7 @@ public:
   }
 
   auto emit(T... args) -> void {
-    for (auto& slot: slots) {
+    for (auto& [idx, slot]: slots) {
       auto slot_with_args = std::bind(slot, args...);
       slot_with_args();
     }
@@ -54,6 +53,10 @@ public:
   auto connect(const Member member, Object& object) -> slot_idx {
     auto slot_obj = slot_func{std::bind_front(member, &object)};
     return connect_obj(slot_obj);
+  }
+
+  auto disconnect(slot_idx idx) -> void {
+    slots.erase(idx);
   }
 };
 }
