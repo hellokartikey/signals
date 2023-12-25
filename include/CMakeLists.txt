@@ -41,16 +41,6 @@ install(
   DESTINATION
   "${CMAKE_INSTALL_DATAROOTDIR}/${HK_LIB}/cmake")
 
-include(CMakePrintHelpers)
-cmake_print_variables(PROJECT_SOURCE_DIR)
-cmake_print_variables(PROJECT_BINARY_DIR)
-cmake_print_variables(CMAKE_INSTALL_INCLUDEDIR)
-cmake_print_variables(CMAKE_INSTALL_DATAROOTDIR)
-cmake_print_variables(CMAKE_INSTALL_LIBDIR)
-cmake_print_variables(CMAKE_INSTALL_BINDIR)
-cmake_print_variables(${HK_LIB}_SOURCE_DIR)
-cmake_print_variables(HK_NAMESPACE)
-
 install(
   DIRECTORY ${PROJECT_SOURCE_DIR}/include/
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/)
