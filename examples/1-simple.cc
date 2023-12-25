@@ -1,26 +1,20 @@
 #include <iostream>
+#include <format>
 
 #include <hk/signals/signals.h>
 
-auto slot1(int i) {
+auto slot_fun(int i) {
   std::cout
-    << "Slot 1: value = "
-    << i
-    << "\n";
-}
-
-auto slot2(int i) {
-  std::cout
-    << "Slot 2: value squared = "
-    << i * i
-    << "\n";
+    << std::format("Slot function: value squared = {}\n", i * i);
 }
 
 auto main() -> int {
   auto signal = hk::Signal<int>{};
 
-  signal.connect(slot1);
-  signal.connect(slot2);
+  signal.connect(
+    [] (int value) { std::cout << std::format("Lambda: {}\n", value); });
+
+  signal.connect(slot_fun);
 
   signal.emit(9);
 
