@@ -1,7 +1,7 @@
 #include <iostream>
 #include <format>
 
-#include <hk/signals/signals.h>
+#include <hk/signals.h>
 
 auto slot1(int i) {
   std::cout

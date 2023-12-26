@@ -1,7 +1,7 @@
 #include <iostream>
 #include <format>
 
-#include <hk/signals/signals.h>
+#include <hk/signals.h>
 
 
 auto slot_func(int i, std::string_view msg) {

@@ -8,7 +8,7 @@ It was inspired by [Qt's Signals and Slots](https://doc.qt.io/qt-6/signalsandslo
 #include <iostream>
 #include <format>
 
-#include <hk/signals/signals.h>
+#include <hk/signals.h>
 
 auto slot_fun(int i) {
   std::cout
@@ -47,7 +47,8 @@ project(hk_signals_example)
 include(FetchContent)
 FetchContent_Declare(
   hk_signals 
-  GIT_REPOSITORY https://github.com/hellokartikey/signals.git)
+  GIT_REPOSITORY https://github.com/hellokartikey/signals.git
+  GIT_TAG main)
 FetchContent_MakeAvailable(hk_signals)
 
 add_executable(

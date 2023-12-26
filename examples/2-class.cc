@@ -2,7 +2,7 @@
 #include <iostream>
 #include <format>
 
-#include <hk/signals/signals.h>
+#include <hk/signals.h>
 
 class Input {
 public:

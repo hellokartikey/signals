@@ -1,3 +1,6 @@
+#ifndef HK_SIGNALS_H
+#define HK_SIGNALS_H
+
 #include <functional>
 #include <map>
 #include <type_traits>
@@ -66,3 +69,5 @@ auto disconnect(Signal<T...>& signal, std::size_t idx) -> void {
   signal.disconnect(idx);
 }
 }
+
+#endif
