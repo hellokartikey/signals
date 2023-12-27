@@ -1,8 +1,7 @@
-#include <iostream>
-#include <format>
-
 #include <hk/signals.h>
 
+#include <format>
+#include <iostream>
 
 auto overloaded(int i) -> void {
   std::cout << std::format("This is overloaded(int): {}\n", i);
@@ -14,10 +13,10 @@ auto overloaded(float i) -> void {
 
 auto main() -> int {
   auto signal = hk::signals::Signal<int>{};
-    
-  hk::signals::connect(signal, [] (int i) { overloaded(i); });
+
+  hk::signals::connect(signal, [](int i) { overloaded(i); });
 
   signal(9);
-  
+
   return 0;
 }

@@ -1,21 +1,18 @@
-#include <iostream>
-#include <format>
-
 #include <hk/signals.h>
 
+#include <format>
+#include <iostream>
+
 auto slot1(int i) {
-  std::cout
-    << std::format("Slot function 1: value squared = {}\n", i * i);
+  std::cout << std::format("Slot function 1: value squared = {}\n", i * i);
 }
 
 auto slot2(int i) {
-  std::cout
-    << std::format("Slot function 2: value = {}\n", i);
+  std::cout << std::format("Slot function 2: value = {}\n", i);
 }
 
 auto slot3(int i) {
-  std::cout
-    << std::format("Slot function 3: 10 * value = {}\n", 10 * i);
+  std::cout << std::format("Slot function 3: 10 * value = {}\n", 10 * i);
 }
 
 auto main() -> int {
@@ -38,8 +35,8 @@ auto main() -> int {
   signal(11);
   std::cout << std::format("Connections: {}\n", signal.connections());
 
-  std::cout <<
-    std::format("conn1={}\nconn2={}\nconn3={}\n", conn1, conn2, conn3);
+  std::cout << std::format("conn1={}\nconn2={}\nconn3={}\n", conn1, conn2,
+                           conn3);
 
   return 0;
 }

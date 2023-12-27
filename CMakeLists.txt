@@ -15,6 +15,8 @@ set(HK_NAMESPACE hk)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+include(cmake/clang-format.cmake)
+
 add_subdirectory(include)
 
 if(BUILD_EXAMPLES)

@@ -1,8 +1,7 @@
-#include <iostream>
-#include <format>
-
 #include <hk/signals.h>
 
+#include <format>
+#include <iostream>
 
 auto slot_func(int i, std::string_view msg) {
   std::cout << std::format("{}: {}\n", msg, i);
@@ -15,6 +14,6 @@ auto main() -> int {
   hk::signals::connect(signal, &slot_func);
 
   signal(9, "This is a message");
-  
+
   return 0;
 }
