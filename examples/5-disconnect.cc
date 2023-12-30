@@ -1,4 +1,4 @@
-#include <hk/signals.h>
+#include <hk/signal.h>
 
 #include <format>
 #include <iostream>
