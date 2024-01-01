@@ -1,4 +1,4 @@
-file(GLOB_RECURSE ALL_SOURCE_FILES include/*.h include/*.cc examples/*.cc)
+file(GLOB_RECURSE ALL_SOURCE_FILES ${HK_HEADERS} ${HK_SRC})
 
 add_custom_target(
     clangformat

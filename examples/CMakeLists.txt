@@ -1,9 +1,8 @@
+find_package(signals)
+
 function(hk_example EXAMPLE_NAME)
   add_executable(${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
-
-  target_include_directories(
-    ${EXAMPLE_NAME}
-    PRIVATE ${PROJECT_SOURCE_DIR}/include)
+  target_link_libraries(${EXAMPLE_NAME} hk::signals)
 endfunction()
 
 hk_example(1-simple)

@@ -8,14 +8,22 @@ project(
   LANGUAGES CXX)
 
 option(BUILD_EXAMPLES "Build examples" OFF)
+option(BUILD_TESTS "Build unit tests" OFF)
+option(CLANG_FORMAT "Use clang-format" OFF)
 
-set(HK_LIB signals)
+set(HK_LIB hk)
+set(HK_SIGNALS signals)
 set(HK_NAMESPACE hk)
+set(HK_INCLUDE hk)
+set(HK_HEADERS hk/signal.h hk/tunnel.h)
+set(HK_SOURCE)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include(cmake/clang-format.cmake)
+if (CLANG_FORMAT)
+  include(cmake/clang-format.cmake)
+endif(CLANG_FORMAT)
 
 add_subdirectory(include)
 

@@ -1,46 +1,40 @@
-add_library(${HK_LIB} INTERFACE)
+add_library(${HK_SIGNALS} INTERFACE)
 
 add_library(
-  ${HK_NAMESPACE}::${HK_LIB} ALIAS ${HK_LIB})
+  ${HK_NAMESPACE}::${HK_SIGNALS} ALIAS ${HK_SIGNALS})
 
 target_include_directories(
-  ${HK_LIB}
+  ${HK_SIGNALS}
   INTERFACE
-  $<BUILD_INTERFACE:${${HK_LIB}_SOURCE_DIR}/include>
+  $<BUILD_INTERFACE:${${HK_SIGNALS}_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 include(GNUInstallDirs)
 install(
-  TARGETS ${HK_LIB}
-  EXPORT ${HK_LIB}_Targets
+  TARGETS ${HK_SIGNALS}
+  EXPORT ${HK_SIGNALS}_Targets
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-  "${PROJECT_BINARY_DIR}/${HK_LIB}ConfigVersion.cmake"
-  VERSION ${PROJECT_VERSION}
-  COMPATIBILITY SameMajorVersion)
-
 configure_package_config_file(
-  "${PROJECT_SOURCE_DIR}/${HK_LIB}Config.cmake.in"
-  "${PROJECT_BINARY_DIR}/${HK_LIB}Config.cmake"
+  "${PROJECT_SOURCE_DIR}/${HK_SIGNALS}Config.cmake.in"
+  "${PROJECT_BINARY_DIR}/${HK_SIGNALS}Config.cmake"
   INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${HK_LIB}/cmake)
 
 install(
-  EXPORT ${HK_LIB}_Targets
-  FILE ${HK_LIB}Targets.cmake
+  EXPORT ${HK_SIGNALS}_Targets
+  FILE ${HK_SIGNALS}Targets.cmake
   NAMESPACE ${HK_NAMESPACE}::
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${HK_LIB}/cmake)
 
 install(
   FILES
-  "${PROJECT_BINARY_DIR}/${HK_LIB}Config.cmake"
-  "${PROJECT_BINARY_DIR}/${HK_LIB}ConfigVersion.cmake"
+  "${PROJECT_BINARY_DIR}/${HK_SIGNALS}Config.cmake"
   DESTINATION
   "${CMAKE_INSTALL_DATAROOTDIR}/${HK_LIB}/cmake")
 
 install(
-  DIRECTORY ${PROJECT_SOURCE_DIR}/include/
-  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/)
+  FILES ${HK_HEADERS}
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${HK_INCLUDE})
